@@ -1,10 +1,10 @@
 #Main config file for java webserver
-#Mon Jan 16 18:45:53 EST 2017
+#Mon Jan 16 18:50:01 EST 2017
 logToFile=false
-phpEnabled=true
 clients=100
+phpEnabled=true
 port=8080
-html404=default
 html=website/index.php
-logHTTP=true
+html404=default
 logDelegation=true
+logHTTP=true

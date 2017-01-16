@@ -22,7 +22,11 @@ public class Startup {
 		Instance.delegator = new Delegator();
 		if(!consoleMode) postInitGUI(startingLog);
 		else postInitConsole(startingLog); 
-		Runtime.getRuntime().addShutdownHook(new Thread(){@Override public void run(){Instance.config.save();}});
+		Runtime.getRuntime().addShutdownHook(new Thread(){
+			@Override public void run(){
+				Instance.config.save();
+			}
+		});
 	}
 	public static void postInitConsole(String startingLog){
 		Scanner input = new Scanner(System.in);
