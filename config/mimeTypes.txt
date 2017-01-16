@@ -1,0 +1,17 @@
+#Webserver mime type list
+#Mon Jan 16 18:35:36 EST 2017
+.jpeg=image/jpeg
+.pdf=application/pdf
+.js=text/javascript
+.mpeg=video/mpeg
+.gif=image/gif
+.txt=text/plain
+.xml=application/xml
+.html=text/html
+.mp3=audio/mpeg
+.bmp=image/bmp
+.css=text/css
+.htm=text/html
+.png=image/png
+.jpg=image/jpeg
+.wav=audio/wav
