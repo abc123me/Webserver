@@ -44,10 +44,10 @@ public class GUI extends JFrame {
 	private JCheckBox chckbxLogHttp;
 	private JCheckBox chckbxLogDelegation;
 	private Component horizontalGlue;
-	private Component horizontalGlue_1;
 	private JCheckBox chckbxEnablePhp;
 	private JFileChooser fcHTML;
 	private boolean notAdded = true;
+	private JButton btnClear;
 	public GUI() {
 		setAlwaysOnTop(true);
 		setResizable(false);
@@ -69,10 +69,15 @@ public class GUI extends JFrame {
 		panel.add(serverOutput);
 		horizontalBox_1 = Box.createHorizontalBox();
 		panel.add(horizontalBox_1, BorderLayout.SOUTH);
-		horizontalGlue_1 = Box.createHorizontalGlue();
-		horizontalBox_1.add(horizontalGlue_1);
 		tglbtnStartstopServer = new JToggleButton("Start/Stop");
 		horizontalBox_1.add(tglbtnStartstopServer);
+		btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				serverOutput.setText("");
+			}
+		});
+		horizontalBox_1.add(btnClear);
 		logToFile = new JCheckBox("Log output to file");
 		horizontalBox_1.add(logToFile);
 		chckbxLogDelegation = new JCheckBox("Log delegation");
