@@ -23,12 +23,12 @@ public class Startup {
 		if(!consoleMode) postInitGUI(startingLog);
 		else postInitConsole(startingLog); 
 		Runtime.getRuntime().addShutdownHook(new Thread(){@Override public void run(){Instance.config.save();}});
-		verifyPHP();
 	}
 	public static void postInitConsole(String startingLog){
 		Scanner input = new Scanner(System.in);
 		Utility.log(startingLog);
 		Utility.logHelp();
+		verifyPHP();
 		Instance.delegatorThread = new Thread(Instance.delegator);
 		Instance.delegatorThread.setName("Delegator");
 		Instance.config.save();
@@ -173,7 +173,7 @@ public class Startup {
 				StringWriter sw = new StringWriter();
 			    PrintWriter pw = new PrintWriter(sw);
 				php.getContext().setWriter(pw);
-				php.eval("<?php echo \"PHP is working\n\";");
+				php.eval("<?php echo \"PHP is working\";");
 				Utility.log(sw.getBuffer() + "");
 			}
 			catch(Exception e){
