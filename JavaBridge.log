@@ -1,0 +1,20 @@
+Jan 13 18:24:57 JavaBridge ERROR: An exception occured: java.lang.IllegalStateException: setEncoding
+java.lang.IllegalStateException: setEncoding
+	at php.java.bridge.http.WriterOutputStream.setEncoding(WriterOutputStream.java:47)
+	at php.java.script.AbstractPhpScriptEngine$SimpleHeaderParser.addHeader(AbstractPhpScriptEngine.java:216)
+	at php.java.script.AbstractPhpScriptEngine$SimpleHeaderParser.parseHeader(AbstractPhpScriptEngine.java:206)
+	at php.java.bridge.http.HeaderParser.parseBody(HeaderParser.java:94)
+	at php.java.script.CGIRunner.doRun(CGIRunner.java:98)
+	at php.java.script.HttpProxy.doRun(HttpProxy.java:63)
+	at php.java.script.Continuation.run(Continuation.java:100)
+	at php.java.bridge.ThreadPool$Delegate.run(ThreadPool.java:60)
+Jan 13 18:24:57 JavaBridge ERROR: An exception occured: java.lang.IllegalStateException: setEncoding
+java.lang.IllegalStateException: setEncoding
+	at php.java.bridge.http.WriterOutputStream.setEncoding(WriterOutputStream.java:47)
+	at php.java.script.AbstractPhpScriptEngine$SimpleHeaderParser.addHeader(AbstractPhpScriptEngine.java:216)
+	at php.java.script.AbstractPhpScriptEngine$SimpleHeaderParser.parseHeader(AbstractPhpScriptEngine.java:206)
+	at php.java.bridge.http.HeaderParser.parseBody(HeaderParser.java:94)
+	at php.java.script.CGIRunner.doRun(CGIRunner.java:98)
+	at php.java.script.HttpProxy.doRun(HttpProxy.java:63)
+	at php.java.script.Continuation.run(Continuation.java:100)
+	at php.java.bridge.ThreadPool$Delegate.run(ThreadPool.java:60)
