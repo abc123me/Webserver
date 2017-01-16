@@ -95,7 +95,7 @@ public class ClientHandlerThread extends Thread {
 						} catch (ScriptException e) {
 							e.printStackTrace();
 						}
-						System.out.println(sw.getBuffer() + "");
+						mimeType = "text/html";
 					}
 					//Send file
 					out.print("HTTP/1.0 200 OK\r\n" + "Content-type: " + mimeType + "\r\n\r\n");
