@@ -54,7 +54,7 @@ public class GUI extends JFrame {
 	public GUI() {
 		setAlwaysOnTop(true);
 		setResizable(false);
-		setTitle("Java webserver (c) Jeremiah Lowe 2017-2018");
+		setTitle("Java webserver (c) Jeremiah Lowe 2016-2017");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
