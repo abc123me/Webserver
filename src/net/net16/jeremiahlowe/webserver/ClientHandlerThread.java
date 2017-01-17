@@ -53,7 +53,6 @@ public class ClientHandlerThread extends Thread {
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			PrintStream out = new PrintStream(new BufferedOutputStream(socket.getOutputStream()));
 			String s = in.readLine();
-			if(log) Utility.log(s);
 			String fileName = "";
 			if(s != null){
 				StringTokenizer st = new StringTokenizer(s);
@@ -120,7 +119,6 @@ public class ClientHandlerThread extends Thread {
 	public String formatFileName(String fileName){
 		if (fileName.endsWith("/")){
 			fileName += indexFile;
-			if(Instance.config.getLogHTTP()) Utility.log("Replaced fileName with " + indexFile);
 		}
 		while (fileName.indexOf("/") == 0){
 			fileName = fileName.substring(1);
@@ -129,5 +127,8 @@ public class ClientHandlerThread extends Thread {
 		int seperator = 0;
 		for(seperator = 0; seperator < fileName.length(); seperator++) if(fileName.charAt(seperator) == '?') break;
 		return fileName.substring(0, seperator);
+	}
+	public String runPHP(String code){
+		return "";
 	}
 }
