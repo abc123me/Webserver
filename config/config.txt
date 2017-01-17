@@ -1,5 +1,5 @@
 #Main config file for java webserver
-#Mon Jan 16 18:50:01 EST 2017
+#Tue Jan 17 15:56:20 EST 2017
 logToFile=false
 clients=100
 phpEnabled=true

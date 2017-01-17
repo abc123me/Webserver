@@ -45,8 +45,13 @@ public class Startup {
 		input.close();
 	}
 	public static void postInitGUI(String startingLog){
-		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
-		catch (Exception e) {startingLog += "Error setting LF\n" + e + "\n";}
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			startingLog += "Set system LF succesfully!\n";
+		}
+		catch (Exception e) {
+			startingLog += "Error setting LF\n" + e + "\n";
+		}
 		Instance.gui = new GUI();
 		Instance.gui.setGuiOptions();
 		Instance.mimeTypeLoader.loadToGUI();
@@ -58,6 +63,11 @@ public class Startup {
 		Instance.gui.setLogToFile(Instance.config.getLogToFile());
 		Instance.config.save();
 		Instance.gui.addListeners();
+	}
+	public static String getOS(){
+		String os = System.getProperty("os.name").toLowerCase();
+		System.out.println("Using: " + os);
+		return os;
 	}
 	public static String preInit(){
 		String startingLog = "";

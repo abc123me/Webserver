@@ -2,9 +2,11 @@ package net.net16.jeremiahlowe.webserver;
 
 import java.awt.BorderLayout;
 import java.awt.TextArea;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -48,12 +50,12 @@ public class GUI extends JFrame {
 	private JFileChooser fcHTML;
 	private boolean notAdded = true;
 	private JButton btnClear;
+	
 	public GUI() {
 		setAlwaysOnTop(true);
 		setResizable(false);
-		setTitle("Java webserver");
+		setTitle("Java webserver (c) Jeremiah Lowe 2017-2018");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -98,9 +100,6 @@ public class GUI extends JFrame {
 		chckbxUseCustomPort = new JCheckBox("Use custom port");
 		chckbxUseCustomPort.setBounds(12, 8, 146, 23);
 		panel_1.add(chckbxUseCustomPort);
-		JLabel lblcCopyrightJeremiah = new JLabel(" \u00A9 Jeremiah Lowe  2016-2017");
-		lblcCopyrightJeremiah.setBounds(0, 213, 429, 20);
-		panel_1.add(lblcCopyrightJeremiah);
 		maxConn.setModel(new SpinnerNumberModel(100, 0, 1000, 10));
 		maxConn.setBounds(166, 41, 78, 20);
 		panel_1.add(maxConn);
@@ -139,6 +138,12 @@ public class GUI extends JFrame {
 		horizontalBox.add(txtMimeType);
 		btnAdd = new JButton("Add");
 		horizontalBox.add(btnAdd);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension guiSize = new Dimension(550, 300);
+		String os = Startup.getOS();
+		guiSize.width = os.contains("windows") ? 500 : 600;
+		guiSize.height = os.contains("windows") ? 300 : 400;
+		setBounds(screenSize.width / 2 - guiSize.width / 2, screenSize.height / 2 - guiSize.height / 2, guiSize.width, guiSize.height);
 	}
 	public void addListeners(){
 		if(notAdded){

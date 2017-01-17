@@ -4,8 +4,10 @@
     <div id="main">
     	<p>This is a php test</p>
     	<?php
-print "Hello from \"another\" World!";
-?>
+
+        $cookie = http_build_cookie("test");
+
+    	?>
     </div>
   </body>
 </html>
