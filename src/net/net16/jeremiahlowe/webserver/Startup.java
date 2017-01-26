@@ -32,7 +32,6 @@ public class Startup {
 		Scanner input = new Scanner(System.in);
 		Utility.log(startingLog);
 		Utility.logHelp();
-		verifyPHP();
 		Instance.delegatorThread = new Thread(Instance.delegator);
 		Instance.delegatorThread.setName("Delegator");
 		Instance.config.save();
@@ -98,6 +97,7 @@ public class Startup {
 			out += Instance.config.makeFile();
 			Instance.mimeTypeLoader.createMimeFile();
 		}catch(Exception e){e.printStackTrace(); System.exit(1);}
+		verifyPHP();
 		return out;
 	}
 	public static void processCommand(String command){
@@ -181,9 +181,9 @@ public class Startup {
 	public static void verifyPHP(){
 		if(Instance.config.getPHPEnabled()){
 			Utility.log("Verifying PHP");
-			ScriptEngineManager sem = new ScriptEngineManager();
-			ScriptEngine php = sem.getEngineByExtension("php");
 			try{
+				ScriptEngineManager sem = new ScriptEngineManager();
+				ScriptEngine php = sem.getEngineByExtension("php");
 				StringWriter sw = new StringWriter();
 			    PrintWriter pw = new PrintWriter(sw);
 				php.getContext().setWriter(pw);
