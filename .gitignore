@@ -1,4 +1,4 @@
-config
-Website
+config/
+Website/
 *.log
 *.class
