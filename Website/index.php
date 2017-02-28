@@ -2,6 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <body>
     <div id="main">
+<<<<<<< HEAD
+    	<p><h1>Your bank.com</h1></p>
+    	<form>
+    		<p>Username: </p><input>
+    		<p>Password: </p><input type="Password">
+    	</form>
+    	<br>
+    	<button>Login</button>
+=======
     	<p>This is a php test</p>
     	<?php
 		/* counter */
@@ -20,6 +29,7 @@
 		fwrite($datei, $count);
 		fclose($datei);
     	?>
+>>>>>>> branch 'master' of https://github.com/abc123me/Webserver.git
     </div>
   </body>
 </html>
