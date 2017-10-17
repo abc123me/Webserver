@@ -2,3 +2,5 @@ config/
 Website/
 *.log
 *.class
+.classpath
+.project
