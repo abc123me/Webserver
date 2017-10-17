@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="libs/php-servlet.jar"/>
 	<classpathentry kind="lib" path="libs/commons-cli-1.4-sources.jar"/>
 	<classpathentry kind="lib" path="libs/commons-cli-1.4.jar"/>
+	<classpathentry kind="lib" path="libs/ansipro.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/AnsiPro"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
