@@ -1,10 +1,12 @@
 # Webserver
 This is an HTTP-Only webserver that has PHP support, that's it!
 
-## TODO
+## TODO (Un ordered)
 - Massive security overhaul
-  - Fixing a bug that allows anyone to access server files
-  - Adding a file blacklist 
-  - Adding a file alias list (Eg. filename.html can be accessed by file)
-  - Adding a folder called public which stores all public files
-- Implement POST request management
+  - Fix a bug that allows anyone to access server files
+  - Implement a file blacklist 
+  - Implement a file alias list (Eg. filename.html can be accessed by file)
+  - Implement a folder called public which stores all public files
+- Client handling overhaul
+  - Implement POST request management
+  - Implement cross-checking
