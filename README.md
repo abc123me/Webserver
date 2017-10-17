@@ -1,5 +1,10 @@
 # Webserver
 This is an HTTP-Only webserver that has PHP support, that's it!
-- Curerently implememnting POST request management
-- Fixing a serious security issue where anyone can view logs or config files
-  - Implementing a new form of security protocal that has a blacklist and uses a 'server-only' directory for specific files
+
+## TODO
+- Massive security overhaul
+  - Fixing a bug that allows anyone to access server files
+  - Adding a file blacklist 
+  - Adding a file alias list (Eg. filename.html can be accessed by file)
+  - Adding a folder called public which stores all public files
+- Implement POST request management
