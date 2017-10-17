@@ -1,7 +1,12 @@
 # Webserver
 This is an HTTP-Only webserver that has PHP support, that's it!
 
-## TODO (Un ordered)
+## Progress
+- Massive overhaul
+  - Command line interface overhaul
+    - ANSI outputs
+    - New argument parsing
+## TODO
 - Massive security overhaul
   - Fix a bug that allows anyone to access server files
   - Implement a file blacklist 
@@ -9,4 +14,4 @@ This is an HTTP-Only webserver that has PHP support, that's it!
   - Implement a folder called public which stores all public files
 - Client handling overhaul
   - Implement POST request management
-  - Implement cross-checking
+  - Reorganize
