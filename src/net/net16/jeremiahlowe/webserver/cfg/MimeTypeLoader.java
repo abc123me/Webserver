@@ -1,4 +1,4 @@
-package net.net16.jeremiahlowe.webserver;
+package net.net16.jeremiahlowe.webserver.cfg;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,23 +6,34 @@ import java.io.FileOutputStream;
 import java.util.Enumeration;
 import java.util.Properties;
 
-public class MimeTypeLoader {
+import net.net16.jeremiahlowe.webserver.utility.Enums.LogLevel;
+import net.net16.jeremiahlowe.webserver.utility.Instance;
+
+public class MimeTypeLoader{
 	private File mimeTypeFile = new File("config/mimeTypes.txt");
 	private Properties mimeTypeList = new Properties();
 	
-	public void loadToGUI(){
-		Instance.gui.updateMimeTypes();
+	public void updateMimeTypesForGUI(){
+		Instance.globalInstance.gui.updateMimeTypes();
 	}
 	public void addMimeType(MimeType m){
 		try{
 			mimeTypeList.put(m.fileName, m.mimeType);
-			mimeTypeList.store(new FileOutputStream(mimeTypeFile), "Webserver mime type list");
-			Instance.gui.updateMimeTypes();
+			save();
 		}
-		catch(Exception e){Utility.log("Error adding mimetype " + e);}
+		catch(Exception e){
+			Instance.globalInstance.logger.log(LogLevel.Error, "Error adding mimetype " + e);
+		}
 	}
-	public String loadMimes(){
-		String out = "";
+	public void save(){
+		try{
+			mimeTypeList.store(new FileOutputStream(mimeTypeFile), "Webserver mime type list");
+		}
+		catch(Exception e){
+			Instance.globalInstance.logger.log(LogLevel.Error, "Error adding mimetype " + e);
+		}
+	}
+	public void load(){
 		try{
 			mimeTypeList.load(new FileInputStream(mimeTypeFile));
 			Enumeration<Object> keys = mimeTypeList.keys();
@@ -32,8 +43,9 @@ public class MimeTypeLoader {
 				MimeType.mimeTypes.add(mime);
 			}
 		}
-		catch(Exception e){out += "Error loading mimetypes: " + e + "\n";}
-		return out;
+		catch(Exception e){
+			Instance.globalInstance.logger.log(LogLevel.Error, "Error loading mimetypes: " + e + "\n");
+		}
 	}
 	public String createMimeFile() throws Exception{
 		if(!mimeTypeFile.exists()){

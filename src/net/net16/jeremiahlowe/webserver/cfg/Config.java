@@ -1,4 +1,4 @@
-package net.net16.jeremiahlowe.webserver;
+package net.net16.jeremiahlowe.webserver.cfg;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,47 +7,51 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-public class Config {
+import net.net16.jeremiahlowe.webserver.utility.Enums.LogLevel;
+import net.net16.jeremiahlowe.webserver.utility.Instance;
+
+public class Config{
 	private boolean logToFile = false;
 	private int port = 80;
 	private String html = "index.html";
 	private String html404 = "404.html";
 	private boolean useHtml404 = false;
-	private int clients = 100;
+	private int threads = 2;
 	private File configFile = new File("config/config.txt");
 	private String error404Text = "";
 	private Properties configProperties = new Properties();
 	private boolean logHTTP = false;
 	private boolean logDelegation = false;
 	private boolean phpEnabled = false;
+	private String loadingStatus = "Not loaded";
 	
-	public String loadConfig(){
-		String status = "";
+	public void load(){
+		loadingStatus = "";
 		try {
 			configProperties.load(new FileInputStream(configFile));
 			if(configProperties.containsKey("port")){
 				port = Integer.parseInt(configProperties.getProperty("port"));
-				status += "Set port to " + port + "\n";
+				loadingStatus += "Set port to " + port + "\n";
 			}
-			if(configProperties.containsKey("clients")){
-				clients = Integer.parseInt(configProperties.getProperty("clients"));
-				status += "Set max clients to " + clients + "\n";
+			if(configProperties.containsKey("threads")){
+				threads = Integer.parseInt(configProperties.getProperty("threads"));
+				loadingStatus += "Set max threads to " + threads + "\n";
 			}
 			if(configProperties.containsKey("html")){
 				html = configProperties.getProperty("html");
-				status += "Set HTML file to " + html + "\n";
+				loadingStatus += "Set HTML file to " + html + "\n";
 			}
 			if(configProperties.containsKey("logToFile")){
 				logToFile = Boolean.parseBoolean(configProperties.getProperty("logToFile"));
-				status += (logToFile ? "Enabled" : "Disabled") + " logging to file\n";
+				loadingStatus += (logToFile ? "Enabled" : "Disabled") + " logging to file\n";
 			}
 			if(configProperties.containsKey("logHTTP")){
 				logHTTP = Boolean.parseBoolean(configProperties.getProperty("logHTTP"));
-				status += (logHTTP ? "Enabled" : "Disabled") + " logging of HTTP\n";
+				loadingStatus += (logHTTP ? "Enabled" : "Disabled") + " logging of HTTP\n";
 			}
 			if(configProperties.containsKey("logDelegation")){
 				logDelegation = Boolean.parseBoolean(configProperties.getProperty("logDelegation"));
-				status += (logDelegation ? "Enabled" : "Disabled") + " delegator logging\n";
+				loadingStatus += (logDelegation ? "Enabled" : "Disabled") + " delegator logging\n";
 			}
 			if(configProperties.containsKey("html404") && configProperties.getProperty("html404") != "default"){
 				html404 = configProperties.getProperty("html404");
@@ -58,29 +62,28 @@ public class Config {
 						useHtml404 = true;
 					}
 					else useHtml404 = false;
-					status += "Set custom 404 error\n";
+					loadingStatus += "Set custom 404 error\n";
 				}
 				catch(Exception e){
 					useHtml404 = false;
-					status += "Error setting custom 404 message: " + e + "\n";
+					loadingStatus += "Error setting custom 404 message: " + e + "\n";
 				}
 			}
 			if(configProperties.containsKey("phpEnabled")){
 				phpEnabled = Boolean.parseBoolean((String) configProperties.get("phpEnabled"));
-				status += (phpEnabled ? "Enabled" : "Disabled") + " PHP\n";
+				loadingStatus += (phpEnabled ? "Enabled" : "Disabled") + " PHP\n";
 			}
-			status += "Successfully loaded config file!\n";
+			loadingStatus += "Successfully loaded config file!\n";
 		} catch (Exception e) {
-			status += "Error loading config " + e + "\n";
+			loadingStatus += "Error loading config " + e + "\n";
 			e.printStackTrace();
 		}
-		return status;
 	}
 	public void save(){
 		try{
 			configProperties.put("html", html);
 			configProperties.put("port", String.valueOf(port));
-			configProperties.put("clients", String.valueOf(clients));
+			configProperties.put("threads", String.valueOf(threads));
 			configProperties.put("logToFile", String.valueOf(logToFile));
 			configProperties.put("logDelegation", String.valueOf(logDelegation));
 			configProperties.put("logHTTP", String.valueOf(logHTTP));
@@ -88,7 +91,7 @@ public class Config {
 			if(!useHtml404) configProperties.put("html404", "default");
 			configProperties.store(new FileOutputStream(configFile), "Main config file for java webserver");
 		}
-		catch(Exception e){Utility.log("Error saving config " + e);}
+		catch(Exception e){Instance.globalInstance.logger.log(LogLevel.Severe, "Error saving config " + e);}
 	}
 	public String makeFile() throws Exception{
 		String out = "";
@@ -105,12 +108,12 @@ public class Config {
 	public void setLogDelegator(boolean logDelegation){this.logDelegation = logDelegation;}
 	public int getPort(){return port;}
 	public String getHTMLFile(){return html;}
-	public int getClients(){return clients;}
+	public int getThreads(){return threads;}
 	public boolean getLogToFile(){return logToFile;}
 	public void setLogToFile(boolean logToFile){this.logToFile = logToFile;}
 	public void setPort(int port){this.port = port;}
 	public void setHTML(String html){this.html = html;}
-	public void setClients(int clients){this.clients = clients;}
+	public void setThreads(int threads){this.threads = threads;}
 	public void setPHPEnabled(boolean enabled){phpEnabled = enabled;}
 	public boolean getPHPEnabled(){return phpEnabled;}
 	public String get404Error(){
@@ -121,5 +124,8 @@ public class Config {
 					+ "<h1><b><center><p><div id=\"ohno\">Oh noes!</div> The internet puppy has a migrain :(</p></b></center></h1>"
 					+ "<h2><center><p>Error 404: Page not found</h2></center></p></body></html>";
 		}
+	}
+	public String getLoadingStatus(){
+		return loadingStatus;
 	}
 }

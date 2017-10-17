@@ -1,29 +1,19 @@
 package net.net16.jeremiahlowe.webserver;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.StringTokenizer;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
+import javax.script.*;
+
+import net.net16.jeremiahlowe.webserver.cfg.MimeType;
+import net.net16.jeremiahlowe.webserver.utility.Enums.LogLevel;
+import net.net16.jeremiahlowe.webserver.utility.Instance;
 
 public class ClientHandlerThread extends Thread {
 	private Socket socket;
 	private String indexFile = "";
 	private String indexDirectory = "";
-	private boolean log = false;
 	private static ScriptEngine php;
 	
 	static{
@@ -48,7 +38,6 @@ public class ClientHandlerThread extends Thread {
 	}
 
 	public void run() {
-		log = Instance.config.getLogHTTP();
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			PrintStream out = new PrintStream(new BufferedOutputStream(socket.getOutputStream()));
@@ -80,8 +69,8 @@ public class ClientHandlerThread extends Thread {
 							foundMimeType = true;
 						}
 					}
-					if(!foundMimeType && log) Utility.log("Unable to find mime type for " + fileName + " defaulting to " + mimeType);
-					else if(log) Utility.log("Found mime type for " + fileName + " (" + mimeType + ")");
+					if(!foundMimeType) Instance.globalInstance.logger.log(LogLevel.Error, "Unable to find mime type for " + fileName + " defaulting to " + mimeType);
+					Instance.globalInstance.logger.log(LogLevel.Debug, "Found mime type for " + fileName + " (" + mimeType + ")");
 					//Check for PHP if there is PHP run the PHP
 					InputStream f = new FileInputStream(fileName);
 					if(fileName.endsWith(".php")){
@@ -106,14 +95,14 @@ public class ClientHandlerThread extends Thread {
 					f.close();
 				} 
 				catch (FileNotFoundException x) {
-					if(log) Utility.log(getName() + ": Error 404-File not found (" + fileName + ")");
-					out.println("HTTP/1.0 404 Not Found\r\n" + "Content-type: text/html\r\n\r\n" + Instance.config.get404Error() + "\n");
+					Instance.globalInstance.logger.log(LogLevel.Detailed, getName() + ": Error 404-File not found (" + fileName + ")");
+					out.println("HTTP/1.0 404 Not Found\r\n" + "Content-type: text/html\r\n\r\n" + Instance.globalInstance.config.get404Error() + "\n");
 					out.close();
 				}
 			} 
 		}
 		catch (IOException x) {
-			Utility.log("Error in clientHandlerThread: \n\r" + x);
+			Instance.globalInstance.logger.log(LogLevel.Error, "Error in clientHandlerThread: " + x);
 		}
 	}
 	public String formatFileName(String fileName){

@@ -4,6 +4,9 @@
 	<classpathentry kind="lib" path="libs/JavaBridge.jar"/>
 	<classpathentry kind="lib" path="libs/php-script.jar"/>
 	<classpathentry kind="lib" path="libs/php-servlet.jar"/>
+	<classpathentry kind="lib" path="commons-cli-1.4/commons-cli-1.4.jar" sourcepath="commons-cli-1.4/commons-cli-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="commons-cli-1.4/commons-cli-1.4-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AnsiPro"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

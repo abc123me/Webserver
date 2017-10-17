@@ -1,5 +1,5 @@
 #Webserver mime type list
-#Mon Jan 16 18:35:36 EST 2017
+#Mon Oct 16 19:44:02 EDT 2017
 .jpeg=image/jpeg
 .pdf=application/pdf
 .js=text/javascript

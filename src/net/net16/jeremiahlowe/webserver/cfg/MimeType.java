@@ -1,4 +1,4 @@
-package net.net16.jeremiahlowe.webserver;
+package net.net16.jeremiahlowe.webserver.cfg;
 
 import java.util.ArrayList;
 import java.util.List;

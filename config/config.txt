@@ -1,23 +1,12 @@
-<<<<<<< HEAD
 #Main config file for java webserver
-#Thu Jan 19 16:03:20 EST 2017
-logToFile=false
-clients=100
+#Mon Oct 16 23:28:31 EDT 2017
 phpEnabled=true
 port=8080
-html=Website/index.php
-html404=default
-logDelegation=true
-logHTTP=false
-=======
-#Main config file for java webserver
-#Mon Jan 30 19:07:38 EST 2017
 logToFile=false
-clients=100
-phpEnabled=true
-port=25565
-html=Website/index.htm
-html404=default
+html=Website/index.html
 logDelegation=true
+<<<<<<<=HEAD
 logHTTP=false
->>>>>>> branch 'master' of https://github.com/abc123me/Webserver.git
+html404=default
+threads=3
+clients=100
