@@ -7,11 +7,10 @@ This is an HTTP-Only webserver that has PHP support, that's it!
     - ANSI outputs
     - New argument parsing
 ## TODO
-- Massive security overhaul
-  - Fix a bug that allows anyone to access server files
+- Sercurity stuff
   - Implement a file blacklist 
-  - Implement a file alias list (Eg. filename.html can be accessed by file)
-  - Implement a folder called public which stores all public files
+  - Implement a file alias list
+  - Public folder
 - Client handling overhaul
   - Implement POST request management
   - Reorganize
