@@ -14,4 +14,4 @@ This is an HTTP-Only webserver that has PHP support, that's it!
 - Client handling overhaul
   - Implement POST request management
   - Reorganize
-- Return error 413 if client requests coffee
+- Return error 418 if client requests coffee
